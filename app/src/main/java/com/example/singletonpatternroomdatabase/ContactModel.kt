@@ -12,5 +12,6 @@ data class ContactModel(
     val email:String,
     val createdate: Date,
     val isactive:Int,
-    val status:Int
+    val phone:String,
+    val age:Int
 )
