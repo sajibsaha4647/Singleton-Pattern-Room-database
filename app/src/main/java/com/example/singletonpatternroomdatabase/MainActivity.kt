@@ -29,6 +29,13 @@ class MainActivity : AppCompatActivity() {
 
 
 
+        database.contactDao().readContact().observe(this, androidx.lifecycle.Observer {
+            println(it.toString())
+        })
+
+
+
+
     }
 
 
