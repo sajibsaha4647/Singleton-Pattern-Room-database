@@ -8,6 +8,7 @@ import androidx.room.Room
 import com.example.singletonpatternroomdatabase.databinding.ActivityMainBinding
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,11 +17,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding =DataBindingUtil.setContentView(this, R.layout.activity_main)
-        database = Room.databaseBuilder(applicationContext,ContactDatabase::class.java,"Simple.db").fallbackToDestructiveMigration().build()
+//        database = Room.databaseBuilder(applicationContext,ContactDatabase::class.java,"Simple.db").fallbackToDestructiveMigration().build()
+
+        database = ContactDatabase.getDatabase(this)
 
 
         GlobalScope.launch {
-            database.contactDao().insertContact(ContactModel(0,"bdtask","s@gmail.com"))
+            database.contactDao().insertContact(ContactModel(0,"bdtask new","s@gmail.com", Date()))
             println("data save successfully")
         }
 
