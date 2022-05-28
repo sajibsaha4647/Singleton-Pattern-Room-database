@@ -23,20 +23,22 @@ class MainActivity : AppCompatActivity() {
 
 
         GlobalScope.launch {
-            database.contactDao().insertContact(ContactModel(0,"bdtask new","s@gmail.com", Date()))
+            database.contactDao().insertContact(ContactModel(0,"bdtask new","s@gmail.com",Date(),1,0))
             println("data save successfully")
         }
 
 
 
-        database.contactDao().readContact().observe(this, androidx.lifecycle.Observer {
-            println(it.toString())
-        })
+//        database.contactDao().readContact().observe(this, androidx.lifecycle.Observer {
+//            println(it.toString())
+//        })
 
 
 
 
     }
+
+
 
 
 }

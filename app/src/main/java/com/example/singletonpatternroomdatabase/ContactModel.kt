@@ -10,5 +10,7 @@ data class ContactModel(
     val id:Long,
     val name:String,
     val email:String,
-    val createdate: Date
+    val createdate: Date,
+    val isactive:Int,
+    val status:Int
 )
