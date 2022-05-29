@@ -7,16 +7,18 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 
 import java.util.*
 
-@Database(entities = [ContactModel::class], version = 2)
+@Database(entities = [ContactModel::class], version = 3)
 @TypeConverters(Converters::class)
 abstract class ContactDatabase:RoomDatabase() {
 
     abstract fun contactDao() : ContactDAO
     companion object {
 
-        val MIGRATION_1_2 = object : Migration(1, 2) {
+        val MIGRATION_2_3 = object : Migration(2, 3) {
             override fun migrate(database: SupportSQLiteDatabase) {
-                database.execSQL("ALTER TABLE contact ADD COLLUM age INTEGER NOT NULL DEFAULT(0)")
+                println("migration_1_2")
+                database.execSQL("ALTER TABLE 'contact' ADD COLUMN 'age' INTEGER NOT NULL DEFAULT 0")
+
             }
         }
 
@@ -27,8 +29,8 @@ abstract class ContactDatabase:RoomDatabase() {
             if(INSTANCE == null){
                 synchronized(this){
                     INSTANCE = Room.databaseBuilder(context.applicationContext,ContactDatabase::class.java,"Simple.db")
-                        .fallbackToDestructiveMigration()
-//                        .addMigrations(MIGRATION_1_2)
+//                        .fallbackToDestructiveMigration()
+                        .addMigrations(MIGRATION_2_3)
                         .build()
                 }
             }

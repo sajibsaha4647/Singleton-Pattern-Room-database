@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
 
         GlobalScope.launch {
-            database.contactDao().insertContact(ContactModel(0,"bdtask new","s@gmail.com",Date(),1,"98787987",89))
+            database.contactDao().insertContact(ContactModel(0,"bdtask new","s@gmail.com",Date(),1,"98787987",98))
             println("data save successfully")
         }
 
